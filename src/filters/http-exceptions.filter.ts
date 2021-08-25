@@ -1,4 +1,4 @@
-import { HttpStatusLabels } from '../utils/http.errors.labels';
+import { HttpStatusLabels } from '../constants/http.errors.labels';
 
 import {
   ArgumentsHost,
