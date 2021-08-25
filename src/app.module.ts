@@ -11,7 +11,6 @@ import { MerchantHealthIndicator } from './health/merchant.health';
       envFilePath: `.env.${process.env.ENVIRONMENT}`,
     }),
   ],
-  controllers: [],
   providers: [MerchantHealthIndicator],
 })
 export class AppModule {}
