@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
-
+import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
-import { MerchantHealthIndicator } from './health/merchant.health';
+import { HealthIndicator } from './health/health';
 
 @Module({
   imports: [
+    TerminusModule,
     DatabaseModule,
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.ENVIRONMENT}`,
     }),
   ],
-  providers: [MerchantHealthIndicator],
+  providers: [HealthIndicator],
 })
 export class AppModule {}
