@@ -16,10 +16,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = context.getRequest();
     const { url: path } = request;
     const cathExeption: any = exception.getResponse();
-    const code = cathExeption.statusCode || cathExeption.status;
+    const code =
+      cathExeption.statusCode || cathExeption.status || exception.getStatus();
     const error = cathExeption.error || HttpStatusLabels[code];
     const timestamp = new Date().toISOString();
-    const message = cathExeption.message;
+    const message = cathExeption.message || exception.message;
     const errorResponse = { code, error, path, timestamp, message };
 
     if (exception.getStatus() == HttpStatus.INTERNAL_SERVER_ERROR)
