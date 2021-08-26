@@ -3,15 +3,18 @@ import { TerminusModule } from '@nestjs/terminus';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 import { HealthIndicator } from './health/health';
+import { AppController } from './app.controller';
+import { validationSchema } from './utils/environment.validations';
 
 @Module({
   imports: [
     TerminusModule,
-    DatabaseModule,
     ConfigModule.forRoot({
-      envFilePath: `.env.${process.env.ENVIRONMENT}`,
+      validationSchema,
     }),
+    DatabaseModule,
   ],
+  controllers: [AppController],
   providers: [HealthIndicator],
 })
 export class AppModule {}
