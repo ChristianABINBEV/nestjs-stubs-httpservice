@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseFilters } from '@nestjs/common';
 import { HealthCheck, HealthCheckResult } from '@nestjs/terminus';
 import { HealthIndicator } from './health/health';
+import { HealthCheckExceptionFilter } from './filters/health-check-exception.filter';
 
 @Controller('{{ mainModule }}')
 export class AppController {
@@ -8,6 +9,7 @@ export class AppController {
 
   @Get('health')
   @HealthCheck()
+  @UseFilters(HealthCheckExceptionFilter)
   async isHealth(): Promise<HealthCheckResult> {
     return await this.healthIndicator.isHealthy();
   }

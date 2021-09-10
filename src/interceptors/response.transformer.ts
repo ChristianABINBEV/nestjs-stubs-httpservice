@@ -7,6 +7,8 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpException } from '@nestjs/common';
+import { AdapterException } from '../exceptions/adapter.exception';
+import { HealthCheckException } from '../exceptions/health.check.exception';
 
 export interface Response<T> {
   data: T;
@@ -35,6 +37,10 @@ export class GlobalResponseInterceptor<T>
           return throwError(
             () => new HttpException(error.getResponse(), error.getStatus())
           );
+        } else if (error instanceof AdapterException) {
+          return throwError(new AdapterException(error.getDetails()));
+        } else if (error instanceof HealthCheckException) {
+          return throwError(new HealthCheckException(error.getDetails()));
         }
 
         return throwError(() => error);
