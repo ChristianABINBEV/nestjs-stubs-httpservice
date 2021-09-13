@@ -1,1 +1,3 @@
-export const missingParameters = 'Missing parameters';
+export const missingParameters = {
+  message: 'Missing parameters',
+};

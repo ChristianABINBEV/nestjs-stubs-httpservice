@@ -1,1 +1,3 @@
-export const ok = 'Ok';
+export const ok = {
+  message: 'Ok',
+};
