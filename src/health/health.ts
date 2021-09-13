@@ -12,7 +12,7 @@ export class HealthIndicator {
   constructor(
     private health: HealthCheckService,
     private memory: MemoryHealthIndicator,
-    private db: TypeOrmHealthIndicator
+    private db: TypeOrmHealthIndicator,
   ) {}
 
   async isHealthy(): Promise<HealthCheckResult> {

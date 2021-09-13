@@ -22,7 +22,7 @@ export class GlobalResponseInterceptor<T>
 {
   intercept(
     context: ExecutionContext,
-    next: CallHandler
+    next: CallHandler,
   ): Observable<Response<T>> {
     const serverResponse = context.getArgByIndex(1);
 
@@ -35,16 +35,16 @@ export class GlobalResponseInterceptor<T>
       catchError((error) => {
         if (error instanceof HttpException) {
           return throwError(
-            () => new HttpException(error.getResponse(), error.getStatus())
+            () => new HttpException(error.getResponse(), error.getStatus()),
           );
         } else if (error instanceof AdapterException) {
-          return throwError(new AdapterException(error.getDetails()));
+          return throwError(() => new AdapterException(error.getDetails()));
         } else if (error instanceof HealthCheckException) {
-          return throwError(new HealthCheckException(error.getDetails()));
+          return throwError(() => new HealthCheckException(error.getDetails()));
         }
 
         return throwError(() => error);
-      })
+      }),
     );
   }
 }

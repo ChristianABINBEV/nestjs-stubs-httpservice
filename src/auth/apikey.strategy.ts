@@ -15,7 +15,7 @@ export class ApiKeyStrategy extends PassportStrategy(HeaderAPIKeyStrategy) {
           return done(false);
         }
         return done(true);
-      }
+      },
     );
   }
 

@@ -13,6 +13,8 @@ import { AuthMiddleware } from './middleware/auth.middleware';
     TerminusModule,
     ConfigModule.forRoot({
       validationSchema,
+      envFilePath: '.env',
+      isGlobal: true,
     }),
     DatabaseModule,
   ],
