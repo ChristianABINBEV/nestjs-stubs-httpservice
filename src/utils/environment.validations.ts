@@ -19,4 +19,9 @@ export const validationSchema = Joi.object({
   DB_MIGRATIONS: Joi.boolean().required(),
   DB_SSL: Joi.boolean().required(),
   API_KEY: Joi.string().required(),
+  MESSAGE_BROKER_HOST: Joi.string().required(),
+  MESSAGE_BROKER_PORT: Joi.number().required(),
+  MESSAGE_BROKER_USER: Joi.string().required(),
+  MESSAGE_BROKER_PASS: Joi.string().required(),
+  LOGS_QUEUE: Joi.string().required(),
 });
