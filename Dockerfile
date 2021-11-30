@@ -3,7 +3,11 @@
 #############################################################
 
 # Imagen Base
-FROM node:14
+FROM node:17-alpine3.14
+
+# UPDATE LINUX
+RUN apk update && apk add bash
+RUN apk add --no-cache bash
 
 # Create app directory
 RUN mkdir -p /usr/src/app
