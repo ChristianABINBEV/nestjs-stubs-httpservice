@@ -7,6 +7,7 @@ import { AppController } from './app.controller';
 import { validationSchema } from './utils/environment.validations';
 import { ApiKeyStrategy } from './auth/apikey.strategy';
 import { AuthMiddleware } from './middleware/auth.middleware';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthMiddleware } from './middleware/auth.middleware';
       isGlobal: true,
     }),
     DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [HealthIndicator, ApiKeyStrategy],
