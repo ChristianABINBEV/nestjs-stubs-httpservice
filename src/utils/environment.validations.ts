@@ -25,3 +25,13 @@ export const validationSchema = Joi.object({
   LOGS_QUEUE: Joi.string().required(),
   LOG_EVENT_PATTERN: Joi.string().required(),
 });
+
+export function validateEnv() {
+  const { error } = validationSchema
+    .prefs({ errors: { label: 'key' }, allowUnknown: true })
+    .validate(process.env);
+
+  if (error) {
+    throw new Error(`Config validation error: ${error.message}`);
+  }
+}
